@@ -1,0 +1,41 @@
+{
+  "name": "typescript-react-eslint-template",
+  "version": "1.0.0",
+  "description": "Typescript React template with ESLint",
+  "main": "index.js",
+  "scripts": {
+    "dev": "yarn webpack -w & yarn lite-server",
+    "eslint": "eslint \"./src/**\"",
+    "lite-server": "lite-server --baseDir=\"public\"",
+    "webpack": "webpack"
+  },
+  "keywords": [
+    "template",
+    "typescript",
+    "react",
+    "eslint"
+  ],
+  "author": "Kevin Han",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "lite-server": "^2.5.4",
+    "prettier": "^1.19.1",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.7.5",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
