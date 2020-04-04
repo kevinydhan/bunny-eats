@@ -1,9 +1,18 @@
+// React modules
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+
+// Redux modules
 import { connect } from 'react-redux'
 import { updateBoardDimensions } from '../redux'
+
+// Variables
 import { VALID_BOARD_DIMENSIONS } from '../consts'
 
+/**
+ *
+ * @param props
+ */
 const BoardSizePrompt = (props): JSX.Element => {
     const {
         minWidth,
@@ -15,6 +24,10 @@ const BoardSizePrompt = (props): JSX.Element => {
 
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
+    /**
+     * Validates the input width and height to the specified minimums and
+     * maximums.
+     */
     const areValidDimensions = (): boolean => {
         const { width, height } = dimensions
         const isValidWidth = width >= minWidth && width <= maxWidth
@@ -22,19 +35,33 @@ const BoardSizePrompt = (props): JSX.Element => {
         return isValidWidth && isValidHeight
     }
 
+    /**
+     * Handles the input change for:
+     * - `<input name="width">`
+     * - `<input name="height">`
+     *
+     * @param event
+     */
     const handleChange = (event): void => {
         const { name, value } = event.target
         setDimensions({ ...dimensions, [name]: Number(value) })
     }
 
-    const handleSubmit = (event): void => {
+    /**
+     * Handles the `onClick` event for the `"Play"` button.
+     */
+    const handleSubmit = (): void => {
         if (areValidDimensions()) updateBoardDimensions(dimensions)
     }
 
     return (
         <div>
-            <p>{`Please enter a width between ${minWidth} and ${maxWidth}.`}</p>
-            <p>{`Please enter a height between ${minHeight} and ${maxHeight}.`}</p>
+            <p>
+                Please enter a width between {minWidth} and {maxWidth}.
+            </p>
+            <p>
+                Please enter a height between {minHeight} and {maxHeight}.
+            </p>
 
             <label htmlFor="width">Width</label>
             <input
@@ -75,7 +102,10 @@ BoardSizePrompt.propTypes = {
     updateBoardDimensions: PropTypes.func.isRequired,
 }
 
-const mapDispatchToProps = (dispatch) => ({
+type MapDispatchToPropsReturn = {
+    updateBoardDimensions: (dimensions: BoardDimensions) => void
+}
+const mapDispatchToProps = (dispatch): MapDispatchToPropsReturn => ({
     updateBoardDimensions: (dimensions): void =>
         dispatch(updateBoardDimensions(dimensions)),
 })

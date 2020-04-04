@@ -60,25 +60,20 @@ export default (state = initialState, action: GameActions): GameState => {
             return initializeGame(action.payload)
 
         case GameActionTypes.UPDATE_PLAYER_COORDINATES:
-            if (state.phase !== GamePhases['phase:play']) return state
-
-            const oldX = state.playerCoordinates[0]
-            const oldY = state.playerCoordinates[1]
-            const newX = action.payload[0]
-            const newY = action.payload[1]
-
             const board = [...state.board]
-
-            // Removes the players signature from the old set of coordinates.
-            board[oldY][oldX] = 0
+            const [oldX, oldY] = state.playerCoordinates
+            const [newX, newY] = action.payload
+            let phase: keyof typeof GamePhases = state.phase
+            let remainingEntities = state.remainingEntities
 
             // Checks if new set of coordinates contains any entities.
-            let remainingEntities = state.remainingEntities
             if (board[newY][newX] === EntityMap.item) remainingEntities -= 1
 
             // Checks if there are no more remaining entities.
-            let phase: keyof typeof GamePhases = state.phase
             if (!remainingEntities) phase = GamePhases['phase:end']
+
+            // Removes the player's signature from the old set of coordinates.
+            board[oldY][oldX] = 0
 
             // Moves player to the new set of coordinates.
             board[newY][newX] = EntityMap.player

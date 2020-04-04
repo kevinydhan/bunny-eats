@@ -23,6 +23,7 @@ Board.propTypes = {
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
 }
 
-const mapStateToProps = ({ board }) => ({ board })
+type MapStateToPropsReturn = { board: Array<Array<number>> }
+const mapStateToProps = ({ board }): MapStateToPropsReturn => ({ board })
 
 export default connect(mapStateToProps)(Board)

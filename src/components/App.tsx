@@ -1,13 +1,11 @@
 // React modules
 import React, { Component } from 'react'
-
-// React components
 import BoardSizePrompt from './BoardSizePrompt'
 import Board from './Board'
 import GameOverPrompt from './GameOverPrompt'
 
 // Redux modules
-import { connect } from 'react-redux'
+import { connect, MapDispatchToProps } from 'react-redux'
 import { updatePlayerCoordinates } from '../redux'
 import { GamePhases } from '../redux/types/game.types'
 
@@ -16,7 +14,7 @@ interface AppProps {
     dimensions: BoardDimensions
     board: Array<Array<number>>
     playerCoordinates: XYCoordinate
-    updatePlayerCoordinates: (XYCoordinate) => void
+    updatePlayerCoordinates: (coordinates: XYCoordinate) => void
 }
 
 // static propTypes = {
@@ -31,8 +29,14 @@ interface AppProps {
 // }
 
 class App extends Component<AppProps> {
-    componentDidMount(): void {
-        window.addEventListener('keypress', this.listen)
+    componentDidUpdate(): void {
+        // Determines whether or not to add a keyboard event listener to the
+        // window.
+        if (this.props.phase === GamePhases['phase:play']) {
+            window.addEventListener('keypress', this.listen)
+        } else {
+            window.removeEventListener('keypress', this.listen)
+        }
     }
 
     /**
@@ -88,7 +92,7 @@ class App extends Component<AppProps> {
 
     render(): JSX.Element {
         const { phase } = this.props
-        console.log(phase)
+
         return (
             <div>
                 {phase === GamePhases['phase:start'] && <BoardSizePrompt />}
@@ -99,14 +103,28 @@ class App extends Component<AppProps> {
     }
 }
 
-const mapStateToProps = ({ phase, board, dimensions, playerCoordinates }) => ({
+type MapStateToPropsReturn = {
+    phase: keyof typeof GamePhases
+    board: Array<Array<number>>
+    dimensions: BoardDimensions
+    playerCoordinates: XYCoordinate
+}
+const mapStateToProps = ({
+    phase,
+    board,
+    dimensions,
+    playerCoordinates,
+}): MapStateToPropsReturn => ({
     phase,
     board,
     dimensions,
     playerCoordinates,
 })
 
-const mapDispatchToProps = (dispatch) => ({
+type MapDispatchToPropsReturn = {
+    updatePlayerCoordinates: (coordinates: XYCoordinate) => void
+}
+const mapDispatchToProps = (dispatch): MapDispatchToPropsReturn => ({
     updatePlayerCoordinates: (coordinates: XYCoordinate): void => {
         dispatch(updatePlayerCoordinates(coordinates))
     },
