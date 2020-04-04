@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "yarn webpack",
     "dev": "yarn webpack -w & yarn lite-server",
     "eslint": "eslint \"./src/**\"",
     "lite-server": "lite-server --baseDir=\"public\"",

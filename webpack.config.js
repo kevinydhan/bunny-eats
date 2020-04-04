@@ -1,10 +1,20 @@
 const path = require('path')
 
-const mode =
-    process.env.NODE_ENV === 'production' ? 'production' : 'development'
+const developmentConfig = {
+    mode: 'development'
+}
+
+const productionConfig = {
+    mode: 'production',
+    optimization: { minimize: true },
+}
+
+const config = process.env.NODE_ENV === 'production'
+    ? productionConfig
+    : developmentConfig
 
 module.exports = {
-    mode,
+    ...config,
     entry: './src',
     output: {
         path: path.join(__dirname, 'public'),
