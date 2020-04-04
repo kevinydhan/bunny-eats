@@ -5,7 +5,7 @@ import Board from './Board'
 import GameOverPrompt from './GameOverPrompt'
 
 // Redux modules
-import { connect, MapDispatchToProps } from 'react-redux'
+import { connect } from 'react-redux'
 import { updatePlayerCoordinates } from '../redux'
 import { GamePhases } from '../redux/types/game.types'
 
