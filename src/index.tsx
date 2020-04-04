@@ -1,8 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
+import App from './components/App'
 
-function App(): JSX.Element {
-    return <div>Hello, world!</div>
-}
+import { Provider } from 'react-redux'
+import { store } from './redux'
 
-render(<App />, document.getElementById('app'))
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('app')
+)
