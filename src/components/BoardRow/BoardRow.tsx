@@ -13,22 +13,23 @@ const BoardRow = (props): JSX.Element => {
     return (
         <CellRow>
             {row.map((cell, i) => {
+                const children: JSX.Element[] = []
+
                 switch (cell) {
                     case EntityMap.player:
-                        return (
-                            <Cell key={`cell-${i}`}>
-                                <Image src="./images/player.png" />
-                            </Cell>
+                        children.push(
+                            <Image key='player' src="./images/player.png" />
                         )
+                        break
+
                     case EntityMap.item:
-                        return (
-                            <Cell key={`cell-${i}`}>
-                                <Image src="./images/item.png" />
-                            </Cell>
+                        children.push(
+                            <Image key='item' src="./images/item.png" />
                         )
-                    default:
-                        return <Cell key={`cell-${i}`} />
+                        break
                 }
+
+                return <Cell key={`cell-${i}`} children={children} />
             })}
         </CellRow>
     )
