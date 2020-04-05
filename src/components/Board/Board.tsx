@@ -1,21 +1,22 @@
+// React modules
 import React from 'react'
 import PropTypes from 'prop-types'
+import BoardRow from '../BoardRow/BoardRow'
+
+// Styled-components modules
+import { Card } from '../../styles'
+
+// Redux modules
 import { connect } from 'react-redux'
 
 const Board = (props): JSX.Element => {
     const { board } = props
     return (
-        <main>
+        <Card flexDirection="column">
             {board.map((row, i) => {
-                return (
-                    <div key={`row-${i}`}>
-                        {row.map((cell, i) => (
-                            <span key={`cell-${i}`}>{cell}</span>
-                        ))}
-                    </div>
-                )
+                return <BoardRow key={`row-${i}`} row={row} />
             })}
-        </main>
+        </Card>
     )
 }
 

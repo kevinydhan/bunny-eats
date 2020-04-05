@@ -4,10 +4,14 @@ import PropTypes from 'prop-types'
 
 // Redux modules
 import { connect } from 'react-redux'
-import { updateBoardDimensions } from '../redux'
+import { updateBoardDimensions } from '../../redux'
+
+// Styled-components modules
+import { Card, Input, Button } from '../../styles'
+import { Heading, Paragraph, InputRow, Label } from './BoardSizePrompt.styled'
 
 // Variables
-import { VALID_BOARD_DIMENSIONS } from '../consts'
+import { VALID_BOARD_DIMENSIONS } from '../../consts'
 
 /**
  *
@@ -55,38 +59,50 @@ const BoardSizePrompt = (props): JSX.Element => {
     }
 
     return (
-        <div>
-            <p>
+        <Card
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="column"
+        >
+            <Heading>Maze Problem</Heading>
+
+            <Paragraph>
                 Please enter a width between {minWidth} and {maxWidth}.
-            </p>
-            <p>
+            </Paragraph>
+            <Paragraph>
                 Please enter a height between {minHeight} and {maxHeight}.
-            </p>
+            </Paragraph>
 
-            <label htmlFor="width">Width</label>
-            <input
-                name="width"
-                type="number"
-                min={minWidth}
-                max={maxWidth}
-                onChange={handleChange}
-                required
-            />
+            <InputRow>
+                <div>
+                    <Label htmlFor="width">Width</Label>
+                    <Input
+                        name="width"
+                        type="number"
+                        min={minWidth}
+                        max={maxWidth}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
 
-            <label htmlFor="height">Height</label>
-            <input
-                name="height"
-                type="number"
-                min={minHeight}
-                max={maxHeight}
-                onChange={handleChange}
-                required
-            />
+                <div>
+                    <Label htmlFor="height">Height</Label>
+                    <Input
+                        name="height"
+                        type="number"
+                        min={minHeight}
+                        max={maxHeight}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+            </InputRow>
 
-            <button type="submit" onClick={handleSubmit}>
+            <Button type="submit" color="blue" onClick={handleSubmit}>
                 Play
-            </button>
-        </div>
+            </Button>
+        </Card>
     )
 }
 

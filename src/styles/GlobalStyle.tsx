@@ -11,9 +11,12 @@ export default createGlobalStyle`
 
 html {
     box-sizing: border-box;
+    font-size: 1.125rem;
+}
 
-    font-family: 'Karla', sans-serif;
-    scroll-behavior: smooth;
+html,
+input {
+    font-family: ${(props): string => props.theme.fonts.main}, sans-serif;
 }
 
 h1,
@@ -21,25 +24,38 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-    color: #333;
-}
-
+h6,
 p,
 a {
-    color: #333;
+    color: ${(props): string => props.theme.colors.darkgrey};
 }
 
-a {
-    text-decoration: none;
+button {
+    font-family: ${(props): string => props.theme.fonts.buttons}, sans-serif;
 }
 
 #app {
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: 300vh;
+    min-height: 100vh;
+    padding-top: 36px;
     position: relative;
     width: 100vw;
+
+    &::before {
+        background-blend-mode: multiply;
+        background-color: #eee;
+        background-image: url('./images/background.jpg');
+        background-position: center;
+        background-size: cover;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -999;
+    }
 }
 `

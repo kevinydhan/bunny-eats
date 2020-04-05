@@ -5,7 +5,7 @@
  */
 export const VALID_BOARD_DIMENSIONS = {
     minWidth: 5,
-    maxWidth: 20,
+    maxWidth: 10,
     minHeight: 5,
-    maxHeight: 20,
+    maxHeight: 10,
 }

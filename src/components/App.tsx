@@ -1,8 +1,8 @@
 // React modules
 import React, { Component } from 'react'
-import BoardSizePrompt from './BoardSizePrompt'
-import Board from './Board'
-import GameOverPrompt from './GameOverPrompt'
+import BoardSizePrompt from './BoardSizePrompt/BoardSizePrompt'
+import Board from './Board/Board'
+import GameOverPrompt from './GameOverPrompt/GameOverPrompt'
 
 // Redux modules
 import { connect } from 'react-redux'
@@ -12,30 +12,19 @@ import { GamePhases } from '../redux/types/game.types'
 interface AppProps {
     phase: keyof typeof GamePhases
     dimensions: BoardDimensions
-    board: Array<Array<number>>
+    board: SparseMatrix
     playerCoordinates: XYCoordinate
     updatePlayerCoordinates: (coordinates: XYCoordinate) => void
 }
-
-// static propTypes = {
-//     dimensions: PropTypes.shape({
-//         width: PropTypes.number,
-//         height: PropTypes.number,
-//     }).isRequired,
-//     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
-//         .isRequired,
-//     playerCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-//     updatePlayerCoordinates: PropTypes.func.isRequired,
-// }
 
 class App extends Component<AppProps> {
     componentDidUpdate(): void {
         // Determines whether or not to add a keyboard event listener to the
         // window.
         if (this.props.phase === GamePhases['phase:play']) {
-            window.addEventListener('keypress', this.listen)
+            window.addEventListener('keydown', this.listen)
         } else {
-            window.removeEventListener('keypress', this.listen)
+            window.removeEventListener('keydown', this.listen)
         }
     }
 
@@ -45,6 +34,7 @@ class App extends Component<AppProps> {
      * @param {KeyboardEvent} event - DOM KeyboardEvent object
      */
     listen = (event: KeyboardEvent): void => {
+        console.log(event.key)
         const [x, y] = this.props.playerCoordinates
 
         switch (event.key) {
@@ -105,7 +95,7 @@ class App extends Component<AppProps> {
 
 type MapStateToPropsReturn = {
     phase: keyof typeof GamePhases
-    board: Array<Array<number>>
+    board: SparseMatrix
     dimensions: BoardDimensions
     playerCoordinates: XYCoordinate
 }

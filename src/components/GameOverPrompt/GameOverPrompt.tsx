@@ -2,9 +2,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// Styled-components modules
+import { Card, Button } from '../../styles'
+import { Paragraph, ButtonRow } from './GameOverPrompt.styled'
+
 // Redux modules
 import { connect } from 'react-redux'
-import { retryLevel, restartWithDifferentBoardDimensions } from '../redux'
+import { retryLevel, restartWithDifferentBoardDimensions } from '../../redux'
 
 /**
  * Renders a card that prompts the user whether or not they want to retry the
@@ -28,13 +32,20 @@ const GameOverPrompt = (props): JSX.Element => {
     } = props
 
     return (
-        <div>
-            <p>Game over! You took {totalSteps} steps.</p>
-            <button onClick={retryLevel}>Retry Level</button>
-            <button onClick={restartWithDifferentBoardDimensions}>
-                Change Board Dimensions
-            </button>
-        </div>
+        <Card alignItems="center" flexDirection="column">
+            <Paragraph>Game over! You took {totalSteps} steps.</Paragraph>
+            <ButtonRow>
+                <Button color="green" onClick={retryLevel}>
+                    Retry Level
+                </Button>
+                <Button
+                    color="red"
+                    onClick={restartWithDifferentBoardDimensions}
+                >
+                    Change Board Dimensions
+                </Button>
+            </ButtonRow>
+        </Card>
     )
 }
 
