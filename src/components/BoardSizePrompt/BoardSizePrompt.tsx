@@ -64,7 +64,7 @@ const BoardSizePrompt = (props): JSX.Element => {
             justifyContent="center"
             flexDirection="column"
         >
-            <Heading>Maze Problem</Heading>
+            <Heading>Bunny Eats</Heading>
 
             <Paragraph>
                 Please enter a width between {minWidth} and {maxWidth}.
