@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Heading = styled('h1')`
-    margin-bottom: 20px;
+    margin-bottom: 36px;
 `
 
 export const Paragraph = styled('p')`
@@ -9,7 +9,7 @@ export const Paragraph = styled('p')`
     margin-bottom: 12px;
 
     &:last-of-type {
-        margin-bottom: 56px;
+        margin-bottom: 76px;
     }
 `
 
@@ -22,6 +22,6 @@ export const InputRow = styled('div')`
     align-items: center;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 36px;
+    margin-bottom: 48px;
     width: 100%;
 `

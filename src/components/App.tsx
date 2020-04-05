@@ -34,7 +34,6 @@ class App extends Component<AppProps> {
      * @param {KeyboardEvent} event - DOM KeyboardEvent object
      */
     listen = (event: KeyboardEvent): void => {
-        console.log(event.key)
         const [x, y] = this.props.playerCoordinates
 
         switch (event.key) {
