@@ -1,6 +1,8 @@
 .DS_Store
 .vscode
-node_modules
 
-# Built Webpack files
+# Dependencies
+/node_modules
+
+# Built Webpack file
 /public/bundle.js

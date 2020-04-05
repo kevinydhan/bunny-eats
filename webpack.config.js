@@ -1,20 +1,10 @@
 const path = require('path')
 
-const developmentConfig = {
-    mode: 'development'
-}
-
-const productionConfig = {
-    mode: 'production',
-    optimization: { minimize: true },
-}
-
-const config = process.env.NODE_ENV === 'production'
-    ? productionConfig
-    : developmentConfig
+const mode =
+    process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
 module.exports = {
-    ...config,
+    mode,
     entry: './src',
     output: {
         path: path.join(__dirname, 'public'),
@@ -27,14 +17,6 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
             },
-            {
-                test: /\.(ts|tsx)$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/,
-            },
         ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
     },
 }
