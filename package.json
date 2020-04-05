@@ -1,8 +1,8 @@
 {
-  "name": "maze-problem",
+  "name": "bunny-eats",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple grid-based browser game",
+  "main": "src/index.tsx",
   "scripts": {
     "build": "yarn webpack",
     "dev": "yarn webpack -w & yarn lite-server",
@@ -12,7 +12,15 @@
     "stylelint": "stylelint \"./src/**\"",
     "webpack": "webpack"
   },
-  "keywords": [],
+  "keywords": [
+    "game",
+    "browser game",
+    "typescript",
+    "react",
+    "redux",
+    "styled-components",
+    "webpack"
+  ],
   "author": "Kevin Han",
   "license": "MIT",
   "dependencies": {
