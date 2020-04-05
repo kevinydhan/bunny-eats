@@ -12,6 +12,7 @@ export default createGlobalStyle`
 html {
     box-sizing: border-box;
     font-size: 1.125rem;
+    overflow-x: hidden;
 }
 
 html,
@@ -28,6 +29,8 @@ h6,
 p,
 a {
     color: ${(props): string => props.theme.colors.darkgrey};
+    letter-spacing: 2px;
+    margin-right: -2px;
 }
 
 button {

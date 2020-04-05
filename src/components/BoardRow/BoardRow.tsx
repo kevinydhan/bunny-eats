@@ -18,18 +18,18 @@ const BoardRow = (props): JSX.Element => {
                 switch (cell) {
                     case EntityMap.player:
                         children.push(
-                            <Image key='player' src="./images/player.png" />
+                            <Image key="player" src="./images/player.png" />
                         )
                         break
 
                     case EntityMap.item:
                         children.push(
-                            <Image key='item' src="./images/item.png" />
+                            <Image key="item" src="./images/item.png" />
                         )
                         break
                 }
 
-                return <Cell key={`cell-${i}`} children={children} />
+                return <Cell key={`cell-${i}`}>{...children}</Cell>
             })}
         </CellRow>
     )
