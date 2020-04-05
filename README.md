@@ -1,4 +1,4 @@
-# Maze Problem
+# Bunny Eats
 
 Here is a [video][1] containing the original game.
 
